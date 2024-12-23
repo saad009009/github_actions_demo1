@@ -7,17 +7,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: setup
-        uses: actions/node-setup
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - name: install dependencies
+
+      - name: Install dependencies
         run: npm install
-      - name: test
+
+      - name: Run tests
         run: npm test
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: deployment
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deployment
         run: echo "Deploying ..."
