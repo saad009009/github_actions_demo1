@@ -1,0 +1,23 @@
+name: deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup
+        uses: actions/node-setup
+        with:
+          node-version: "14"
+      - name: install dependencies
+        run: npm install
+      - name: test
+        run: npm test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployment
+        run: echo "Deploying ..."
